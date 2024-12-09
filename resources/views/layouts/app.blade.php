@@ -37,6 +37,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('index.form') }}">Form Input</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.index') }}">User</a>
+                        </li>
                         @endauth
                     </ul>
 

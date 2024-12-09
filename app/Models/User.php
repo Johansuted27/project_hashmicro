@@ -33,19 +33,20 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public static function createUser($username, $password)
+    public static function createUser($name,$email, $password)
     {
         return self::create([
-            'username' => $username,
+            'name' => $name,
+            'email' => $email,
             'password' => bcrypt($password),
         ]);
     }
 
-    public static function updateUser($id, $username, $password)
+    public static function updateUser($id, $name, $email)
     {
         $user = self::find($id);
-        $user->username = $username;
-        $user->password = bcrypt($password);
+        $user->name = $name;
+        $user->email = $email;
         $user->save();
         return $user;
     }

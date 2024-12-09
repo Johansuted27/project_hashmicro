@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InputUserController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -26,10 +27,17 @@ Route::get('/test', function () {
 
 
 
-Route::get('/input_user', [InputUserController::class, 'index'])->name('index.form');
-Route::get('/process_form', [InputUserController::class, 'process'])->name('form.input.user');
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::middleware(['auth'])->group(function() {
+    Route::get('/input_user', [InputUserController::class, 'index'])->name('index.form');
+    Route::get('/process_form', [InputUserController::class, 'process'])->name('form.input.user');
+
+    Route::resource('user', UserController::class);
+
+});
